@@ -1,4 +1,4 @@
-#Error handling
+# Error handling
 
 iBanFirst fundraising API uses conventional HTTP response codes to indicate success or failure of an API request. 
 The body of the response contains more detailed information on the cause of the problem.

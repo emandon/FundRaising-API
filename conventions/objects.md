@@ -1,6 +1,6 @@
-#Objects
+# Objects
 
-##Error Object
+## Error Object
 This object represents an error. These objects are present int the body of the response when an error occurs on the API.
 
 | parameter | type | description |

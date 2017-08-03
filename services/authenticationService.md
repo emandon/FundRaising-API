@@ -1,10 +1,10 @@
-#Authentication
+# Authentication
 
 Every call to the iBanFirst Fundraising API must be authenticated, which must be done by adding a custom HTTP header (X-WSSE) with your username and secret. This section contains detailed instructions on how to create valid headers for the Suite fundraising API.
 All API request must be made over HTTPS. Calls made over plain HTTP will fail. You must authenticate for all requests.
 X-WSSE Format. Also, as this API is made for partners, you will have to provide an additional token to certify the request.
 
-##Creating the header
+## Creating the header
 
 The header has the following format, usually a single HTTP header line which we broke down into multiple lines for easier readability:
 
@@ -25,7 +25,7 @@ The following sections describe each component in detail:
 * Nonce : A random value used to make your request unique so it cannot be replicated by any other unknown party.
 * Created : Field containing the current UTC, GMT, ZULU timestamp (YYYY-MM-DDTHH:MM:SSZ) according to the [ISO8601](http://fr.wikipedia.org/wiki/ISO_8601) format, *e.g. 2014-03-20T12:51:45Z*.
 
-##Computing the Password Digest
+## Computing the Password Digest
 
 Computing the password digest involves 5 simple steps:
 
@@ -35,7 +35,7 @@ Computing the password digest involves 5 simple steps:
 * Calculate the SHA-1 hash value of the concatenated string, and make sure this value is in binary format! Some languages, like PHP, output hexadecimal hash by default. You may need to use special methods to obtain hexadecimal hashes in different languages or even convert byte to hex values by hand (see the sample codes below for more information).
 * Apply a Base64 encoding to the resulted hash to get the final PasswordDigest value.
 
-##Exemple of creating the X-WSSE header with PHP
+## Exemple of creating the X-WSSE header with PHP
 
 Here is a sample code that you can use to make your X-WSSE header, or just in a way of understanding the process.
 
@@ -68,14 +68,14 @@ $digest = base64_encode(sha1($nonce.$date.$password, true));
 $header = sprintf('X-WSSE: UsernameToken Username="%s", PasswordDigest="%s", Nonce="%s", Created="%s"',$username, $digest, $nonce64, $date);
 ~~~
 
-##Special characters
+## Special characters
 
 When sending data to our API, you may notice that certain characters are forbidden for security purpose. Those characters are forbidden in route parameters, optional (query) parameters and JSON bodies.
 
 Here is the list of forbidden characters :
 `& (ampersand) < (open chevron) > (close chevron) % (percentage) ? (question mark) \ (anti-slash) / (slash) | (pipe)`
 
-##Adding the partner token to the authentication
+## Adding the partner token to the authentication
 
 Albeit using the WSSE security to do request for a user to the API, you must authenticate as a partner. 
 
