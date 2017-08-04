@@ -29,37 +29,37 @@ The production environment must be only used for production calls and may not re
 ## Services
 
 ### Startup
-* [POST /Startups/]() - Creates a startup
-* [GET /Startups/]() - Gets a list of startups
-* [GET /Startups/{startupId}/]() - Gets details on a startup
-* [POST /Startups/{startupId}/Documents/]() - Uploads KYC documents for the startup
-* [GET /Startups/{startupId}/Documents/]() - Gets the list of KYC documents for the startup
-* [GET /Startups/{startupId}/Documents/{documentId}/]() - Gets details of a KYC document for the startup
+* [POST /Startups/](./services/StartupService.md#post_startup) - Creates a startup
+* [GET /Startups/](./services/StartupService.md#get_startup) - Gets a list of startups
+* [GET /Startups/{startupId}/](./services/StartupService.md#get_startup_startupid) - Gets details on a startup
 
 ### SPV
-* [POST /SPVs/]() - Creates a SPV
-* [GET /SPVs/]() - Gets a list of SPVs
-* [GET /SPVs/{SPVId}/]() - Gets details on a SPV
-* [DELETE /SPVs/]() - Cancels a SPV
-* [GET /SPVs/{SPVId}/Transfers/]() - Gets a list of Transfers linked to a SPV
-* [PUT /SPVs/{SPVId}/Payout/]() - Do the final payout on a SPV
+* [POST /SPVs/](./services/SPVService.md#post_spv) - Creates a SPV
+* [GET /SPVs/](./services/SPVService.md#get_spv) - Gets a list of SPVs
+* [GET /SPVs/{SPVId}/](./services/SPVService.md#get_spv_spvid) - Gets details on a SPV
+* [DELETE /SPVs/](./services/SPVService.md#delete_spv) - Cancels a SPV
+* [POST /SPVs/{SPVId}/Documents/](./services/SPVService.md#post_spv_spvid_document) - Uploads KYC documents for the SPV
+* [GET /SPVs/{SPVId}/Documents/](./services/SPVService.md#get_spv_spvid_document) - Gets the list of KYC documents for the SPV
+* [GET /SPVs/{SPVId}/Documents/{documentId}/](./services/SPVService.md#get_spv_spvid_document_documentid) - Gets the list of KYC documents for the SPV
+* [GET /SPVs/{SPVId}/Transfers/](./services/SPVService.md#get_spv_spvid_transfer) - Gets a list of Transfers linked to a SPV
+* [PUT /SPVs/{SPVId}/Payout/](./services/SPVService.md#put_spv_spvid_payout) - Do the final payout on a SPV
 
 ### Investor
-* [POST /Investors/]() - Creates an investor
-* [GET /Investors/]() - Gets a list of investors
-* [GET /Investors/{investorId}/]() - Gets details on an investor
-* [POST /Investors/{investorId}/Documents/]() - Uploads KYC documents for the investor
-* [GET /Investors/{investorId}/Documents/]() - Gets the list of KYC documents for the investor
-* [GET /Investors/{investorId}/Documents/{documentId}/]() - Gets details of a KYC document for the investor
-* [GET /Investors/{investorId}/Transfers/]() - Gets a list of Transfers linked to an investor
-* [POST /Investors/{investorId}/Accounts/]() - Creates an account for an investor
-* [GET /Investors/{investorId}/Accounts/]() - Gets a list of accounts linked to an investor
-* [GET /Investors/{investorId}/Accounts/{accountId}/]() - Gets details of an account linked to an investor
+* [POST /Investors/](./services/InvestorService.md#post_investor) - Creates an investor
+* [GET /Investors/](./services/InvestorService.md#get_investor) - Gets a list of investors
+* [GET /Investors/{investorId}/](./services/InvestorService.md#get_investor_investorid) - Gets details on an investor
+* [POST /Investors/{investorId}/Documents/](./services/InvestorService.md#post_investor_investorid_document) - Uploads KYC documents for the investor
+* [GET /Investors/{investorId}/Documents/](./services/InvestorService.md#get_investor_investorid_document) - Gets the list of KYC documents for the investor
+* [GET /Investors/{investorId}/Documents/{documentId}/](./InvestorService/investorService.md#get_investor_investorid_document_documentid) - Gets details of a KYC document for the investor
+* [GET /Investors/{investorId}/Transfers/](./services/InvestorService.md#get_investor_investorid_transfer) - Gets a list of Transfers linked to an investor
+* [POST /Investors/{investorId}/Accounts/](./services/InvestorService.md#post_investor_investorid_account) - Creates an account for an investor
+* [GET /Investors/{investorId}/Accounts/](./services/InvestorService.md#get_investor_investorid_account) - Gets a list of accounts linked to an investor
+* [GET /Investors/{investorId}/Accounts/{accountId}/](./services/InvestorService.md#get_investor_investorid_account_accountid) - Gets details of an account linked to an investor
 
 ### Transfer
-* [POST /Transfers/]() - Creates a transfer
-* [GET /Transfers/]() - Gets a list of transfers
-* [GET /Transfers/{transferId}/]() - Gets details on a transfer
-* [DELETE /Transfers/{transferId}/]() - Cancels a transfer
-* [PUT /Transfers/{transferId}/Validate/]() - Validates a transfer
+* [POST /Transfers/](./services/TransferService.md#post_transfer) - Creates a transfer
+* [GET /Transfers/](./services/TransferService.md#get_transfer) - Gets a list of transfers
+* [GET /Transfers/{transferId}/](./services/TransferService.md#get_transfer_transferid) - Gets details on a transfer
+* [DELETE /Transfers/{transferId}/](./services/TransferService.md#delete_transfer_transferid) - Cancels a transfer
+* [PUT /Transfers/{transferId}/Validate/](./services/TransferService.md#put_transfer_transferid_validate) - Validates a transfer
 
