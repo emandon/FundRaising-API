@@ -85,6 +85,110 @@ This object represents a startup.
 }
 ~~~
 
+## <a id="spv"></a> SPV object
+This object represents a SPV.
+
+| field | type | description |
+|-------|------|-------------|
+| spvId	        | string | The unique identifier of the SPV. |
+| startupId     | string | The unique identifier of the startup linked to the SPV for the fundraising. |
+| status	    | string | The status of the SPV. The status can be `initialized` for a created SPV but not KYC validated, `validated` when all KYC documents are validated, `finalized` when the fundraising based on this SPV is finalized, and `cancelled` if the fundraising based on this SPV is cancelled. |
+| createdDate	| string | The creation date and time of the SPV. As this field represents a date and time, it will implement the `Y-m-d H:i:s` format (ex: 1970-01-01 14:30:00) |
+| targetAccount | [TargetAccount](#targetaccount) | A TargetAccount object that contains all information about the final recipient account of the SPV. |
+| amount        | [Amount](#amount) | An Amount that contains information about fundraising final value and currency. |
+| documents     | Array of [Document](#document) | An array containing all KYC documents posted for this SPV. |
+
+~~~json
+{    
+    "spvId":"Vtx78d",
+    "StartupId":"Ntx5c3",
+    "status":"initialized",
+    "createdDate":"2017-08-01 11:42:50",
+    "targetAccount": {
+        "accountNumber":"FR7630006000011234567890189",
+        "bic":"AGRIFRPP",
+        "clearingType": null,
+        "clearingCode": null,
+        "name": null,
+        "address": {
+            "street": "91 93, BD PASTEUR",
+            "city": "Paris",
+            "zipcode": "75001",
+            "province": null,
+            "country": "FR"
+        }
+    },
+    "amount": {
+        "value": 500000.00,
+        "currency": "EUR"
+    },
+    "documents": []
+}
+~~~
+
+## <a id="document"></a> Document object
+This object represents a Document.
+
+| field | type | description |
+|-------|------|-------------|
+| documentId | string   | The unique identifier of the document. |
+| type	     | string   | The type describing the document. The type can be `ID`, `registrationProof`, `articlesOfAssociation`, `shareholderDeclaration`, `kbis`, `companyStatus` and `shareholderStructure`.
+| name	     | string	| The name of the document.
+| status	 | string	| The status of the document. The status can be `uploaded` for an uploaded document, `accepted` for a validated document or `rejected` for a rejected document.
+
+~~~json
+{
+    "documentId": "NdX7z6",
+    "type": "ID",
+    "name": "john_doe_ID.pdf",
+    "status": "uploaded"
+}
+~~~
+
+## <a id="targetaccount"></a> TargetAccount Object
+This object represents a target account for a SPV payout.
+
+| field | type | description |
+|-------|------|-------------|
+| accountNumber	    | string(100)	| A string containing either an [IBAN](https://en.wikipedia.org/wiki/International_Bank_Account_Number) or an account number. |
+| bic         	    | string(40)	| A BIC/SWIFT code referencing the bank of the account. This is Eight or eleven-digit [ISO 9362 Business Identifier Code](https://en.wikipedia.org/wiki/ISO_9362) specifying the Bank.  |
+| clearingType	    | string(2)	    | A two-character string describing the local clearing network. |
+| clearingCode	    | string(15)	| A string containing the code identifying the branch number on the local clearing network. |
+| name	            | string(100)	| The name of the bank holding the target account. |
+| address	        | [NewAddress](#newaddress)	    | The address of the bank holding the target account. |
+
+~~~~json
+{
+    "accountNumber":"FR7630006000011234567890189",
+    "bic":"AGRIFRPP",
+    "clearingType": null,
+    "clearingCode": null,
+    "name": null,
+    "address": {
+        "street": "91 93, BD PASTEUR",
+        "city": "Paris",
+        "zipcode": "75001",
+        "province": null,
+        "country": "FR"
+    }
+}
+~~~~
+
+## <a id="amount"></a> Amount Object
+This object represents an amount.
+
+| field | type | description |
+|-------|------|-------------|
+| value	    | float	    | The numerical value represented by the amount. |
+| currency	| string    | A string representing the currency of the amount. The currency will implement the [ISO 4217 international currency format](https://en.wikipedia.org/wiki/ISO_4217). |
+
+~~~~json
+{
+    "value": 500000.00,
+    "currency": "EUR"
+}
+~~~~
+
 ## <a id="newaddress"></a> NewAddress Object
 This object represents an address contained in a creation request.
 
@@ -177,5 +281,49 @@ This object represents a legal entity, owner of a startup contained in a creatio
     "email": "my@legalentity.com",
     "phone": "+33123456789",
     "is10percentOwner": true
+}
+~~~~
+
+## <a id="newtargetaccount"></a> NewTargetAccount Object
+This object represents a target account for a SPV payout contained in a creation request.
+
+| field | required | type | description |
+|-------|----------|------|-------------|
+| accountNumber	    | true | string(100)	| A string containing either an [IBAN](https://en.wikipedia.org/wiki/International_Bank_Account_Number) or an account number. |
+| bic         	    | false | string(40)	| A BIC/SWIFT code referencing the bank of the account. This is Eight or eleven-digit [ISO 9362 Business Identifier Code](https://en.wikipedia.org/wiki/ISO_9362) specifying the Bank. This field is optional only when the account number does not have an [IBAN](https://en.wikipedia.org/wiki/International_Bank_Account_Number) format. |
+| clearingType	    | false | string(2)	    | A two-character string describing the local clearing network. If you do not have a BIC, this field is required. |
+| clearingCode	    | false | string(15)	| A string containing the code identifying the branch number on the local clearing network. If you do not have a BIC, this field is required. |
+| name	            | true | string(100)	| The name of the bank holding the target account. |
+| address	        | true | [NewAddress](#newaddress)	    | The address of the bank holding the target account. |
+
+~~~~json
+{
+    "accountNumber":"FR7630006000011234567890189",
+    "bic":"AGRIFRPP",
+    "clearingType": null,
+    "clearingCode": null,
+    "name": null,
+    "address": {
+        "street": "91 93, BD PASTEUR",
+        "city": "Paris",
+        "zipcode": "75001",
+        "province": null,
+        "country": "FR"
+    }
+}
+~~~~
+
+## <a id="newamount"></a> NewAmount Object
+This object represents an amount contained in a creation request.
+
+| field | required | type | description |
+|-------|----------|------|-------------|
+| value	    | true | float	| The numerical value represented by the amount. |
+| currency	| true | string	| A string representing the currency of the amount. The currency will implement the [ISO 4217 international currency format](https://en.wikipedia.org/wiki/ISO_4217). |
+
+~~~~json
+{
+    "value": 500000.00,
+    "currency": "EUR"
 }
 ~~~~
